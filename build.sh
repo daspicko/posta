@@ -6,7 +6,10 @@ npm install
 
 mkdir dist
 
-cp index.html swagger.yml dist/
+cp index.html dist/
+cp swagger.yml dist/
+cp 404.html dist/
+
 cp -r js dist/
 cp -r css dist/
 cp -r assets dist/
