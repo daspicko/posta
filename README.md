@@ -1,5 +1,5 @@
 # Post Offices in Croatia API
 
-List of all post offices in Croatia that refreshes once per day. There is no limitation in usage and authentication is not required.
+List of all post offices in Croatia. There is no limitation on usage; authentication is not required, and data is refreshed daily.
 
-The idea is to provide fast, low latency API that can provide validation for forms or apps or simply get working hours or other info.
+The idea is to provide a fast, low-latency API that can be integrated into form validation or any other use case.
