@@ -7,6 +7,8 @@ on:
       - main
     paths-ignore:
       - .github/**
+      - README.md
+      - LICENSE
   schedule:
     - cron: '0 5 * * *'  # Runs daily at 5 AM UTC (06:00 CET, 07:00 CEST)
 
