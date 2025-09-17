@@ -24,10 +24,10 @@ jobs:
       
       - name: Configure environment
         run: |
-          echo HOST={{ vars.HOST }} >> $GITHUB_ENV
-          echo URL_POST_OFFICE_LIST={{ vars.URL_POST_OFFICE_LIST }} >> $GITHUB_ENV
-          echo URL_POST_BOXES_LIST={{ vars.URL_POST_BOXES_LIST }} >> $GITHUB_ENV
-          echo BATCH_SIZE={{ vars.BATCH_SIZE }} >> $GITHUB_ENV
+          echo HOST=${{ vars.HOST }} >> $GITHUB_ENV
+          echo URL_POST_OFFICE_LIST=${{ vars.URL_POST_OFFICE_LIST }} >> $GITHUB_ENV
+          echo URL_POST_BOXES_LIST=${{ vars.URL_POST_BOXES_LIST }} >> $GITHUB_ENV
+          echo BATCH_SIZE=${{ vars.BATCH_SIZE }} >> $GITHUB_ENV
 
       - name: Build project
         uses: nick-fields/retry@v3
