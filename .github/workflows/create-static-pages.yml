@@ -1,0 +1,56 @@
+name: Create Static Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .github/**
+  schedule:
+    - cron: '0 5 * * *'  # Runs daily at 5 AM UTC (06:00 CET, 07:00 CEST)
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Configure environment
+        run: |
+          echo HOST={{ vars.HOST }} >> $GITHUB_ENV
+          echo URL_POST_OFFICE_LIST={{ vars.URL_POST_OFFICE_LIST }} >> $GITHUB_ENV
+          echo URL_POST_BOXES_LIST={{ vars.URL_POST_BOXES_LIST }} >> $GITHUB_ENV
+          echo BATCH_SIZE={{ vars.BATCH_SIZE }} >> $GITHUB_ENV
+
+      - name: Build project
+        uses: nick-fields/retry@v3
+        with:
+          timeout_seconds: 30
+          max_attempts: 5
+          command: ./build.sh
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: 'dist/'
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

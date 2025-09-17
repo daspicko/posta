@@ -1,0 +1,202 @@
+swagger: "2.0"
+info:
+  title: Post Offices in Croatia API
+  description: An API to retrieve information about post offices in Croatia. List is refreshed every 24 hours. No authentication required. No limitations on usage.
+  version: "1.0.0"
+host: post-offices-cro.apprepo.eu
+basePath: /api/v1
+schemes:
+  - https
+
+paths:
+  /post-offices.json:
+    get:
+      summary: Retrieve a list of post offices
+      description: Get a list of all post offices in Croatia.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: A list of post offices
+          schema:
+            type: array
+            items:
+              type: string
+  /post-office/{id}.json:
+    get:
+      summary: Retrieve a specific post office by ID
+      description: Get detailed information about a specific post office using its ID.
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          minimum: 10000
+          maximum: 99999
+          format: int64
+          description: The ID of the post office to retrieve.
+      responses:
+        200:
+          description: A single post office
+          schema:
+            $ref: '#/definitions/PostOffice'
+        404:
+          description: Post office not found
+
+  /package-boxes.json:
+    get:
+      summary: Retrieve a list of package boxes
+      description: Get a list of all package boxes in Croatia.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: A list of package boxes
+          schema:
+            type: array
+            items:
+              type: string
+  /package-box/{id}.json:
+    get:
+      summary: Retrieve a specific package box by ID
+      description: Get detailed information about a specific package box using its ID.
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          minimum: 10000
+          maximum: 99999
+          format: int64
+          description: The ID of the package box to retrieve.
+      responses:
+        200:
+          description: A single package box
+          schema:
+            $ref: '#/definitions/PackageBox'
+        404:
+          description: Package box not found
+
+definitions:
+  PostOffice:
+    type: object
+    properties:
+      postOffice:
+        type: string
+        description: The name of the post office.
+      postalCode:
+        type: integer
+        format: int64
+        description: The unique identifier for the post office.
+      logo:
+        type: string
+        description: URL to the logo image of the post office.
+      url:
+        type: string
+        description: URL to the post office's webpage.
+      address:
+        type: object
+        description: The address of the post office.
+        properties:
+          street:
+            type: string
+            description: The street name and number.
+          town:
+            type: string
+            description: The town where the post office is located.
+          city:
+            type: string
+            description: The city where the post office is located.
+          county:
+            type: string
+            description: The county where the post office is located.
+      contact:
+        type: object
+        description: The contact information for the post office.
+        properties:
+          email:
+            type: string
+            description: The email address of the post office.
+          fax:
+            type: string
+            description: The fax number of the post office.
+      type:
+        type: string
+        description: The type of the post office (e.g., branch, agency).
+      notes:
+        type: string
+        description: Additional notes about the post office.
+      services:
+        type: string
+        description: The services offered by the post office.
+      workingTime:
+        type: object
+        description: The working hours of the post office.
+        properties:
+          monday:
+            type: string
+            description: Working hours on Monday.
+          tuesday:
+            type: string
+            description: Working hours on Tuesday.
+          wednesday:
+            type: string
+            description: Working hours on Wednesday.
+          thursday:
+            type: string
+            description: Working hours on Thursday.
+          friday:
+            type: string
+            description: Working hours on Friday.
+          saturday:
+            type: string
+            description: Working hours on Saturday.
+          sunday:
+            type: string
+            description: Working hours on Sunday.
+      coordinates:
+        type: object
+        description: The geographical coordinates of the post office.
+        properties:
+          latitude:
+            type: number
+            format: float
+            description: The latitude of the post office.
+          longitude:
+            type: number
+            format: float
+            description: The longitude of the post office.
+    required:
+      - id
+      - name
+      - address
+      - city
+      - postalCode
+
+  PackageBox:
+    type: object
+    properties:
+      number:
+        type: integer
+        format: int64
+        description: The unique identifier for the package box.
+      name:
+        type: string
+        description: The name of the package box.
+      address:
+        type: object
+        description: The address of the package box.
+        properties:
+          street:
+            type: string
+            description: The street name and number.
+          town:
+            type: string
+            description: The town where the package box is located.
+          county:
+            type: string
+            description: The county where the package box is located.
