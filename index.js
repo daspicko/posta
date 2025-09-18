@@ -106,21 +106,21 @@ if (!fs.existsSync('dist/api')) {
 if (!fs.existsSync('dist/api/v1')) {
     fs.mkdirSync('dist/api/v1');
 }
-if (!fs.existsSync('dist/api/v1/post-office')) {
-    fs.mkdirSync('dist/api/v1/post-office');
+if (!fs.existsSync('dist/api/v1/ured')) {
+    fs.mkdirSync('dist/api/v1/ured');
 }
-if (!fs.existsSync('dist/api/v1/package-box')) {
-    fs.mkdirSync('dist/api/v1/package-box');
+if (!fs.existsSync('dist/api/v1/paketomat')) {
+    fs.mkdirSync('dist/api/v1/paketomat');
 }
 
-fs.writeFileSync('dist/api/v1/post-offices.json', JSON.stringify(postOffices.map(office => office.postalCode)));
+fs.writeFileSync('dist/api/v1/uredi.json', JSON.stringify(postOffices.map(office => office.postalCode)));
 for(const office of postOffices) {
-    fs.writeFileSync(`dist/api/v1/post-office/${office.postalCode}.json`, JSON.stringify(office));
+    fs.writeFileSync(`dist/api/v1/ured/${office.postalCode}.json`, JSON.stringify(office));
 }
 
-fs.writeFileSync('dist/api/v1/package-boxes.json', JSON.stringify(packageBoxes.map(box => box.number)));
+fs.writeFileSync('dist/api/v1/paketomati.json', JSON.stringify(packageBoxes.map(box => box.number)));
 for(const box of packageBoxes) {
-    fs.writeFileSync(`dist/api/v1/package-box/${box.number}.json`, JSON.stringify(box));
+    fs.writeFileSync(`dist/api/v1/paketomat/${box.number}.json`, JSON.stringify(box));
 }
 console.log('Data extraction and saving completed successfully.');
 

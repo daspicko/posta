@@ -1,5 +1,5 @@
 ./build.sh
 
-mkdir -p /var/www/html/post-offices-cro
-sudo rm -rf /var/www/html/post-offices-cro/*
-sudo cp -r dist/* /var/www/html/post-offices-cro/
+mkdir -p /var/www/html/posta
+sudo rm -rf /var/www/html/posta/*
+sudo cp -r dist/* /var/www/html/posta/

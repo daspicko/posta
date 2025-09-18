@@ -1,5 +1,9 @@
-# Post Offices in Croatia API
+# API za urede i paketomate Hrvatske pošte
 
-List of all post offices in Croatia. There is no limitation on usage; authentication is not required, and data is refreshed daily.
+API za dohvaćanje svih poštanskih ureda i paketomata Hrvatske pošte u Republici Hrvatskoj. Servis nema ograničenje za korištenje usluge, a ne zahtjeva ni korisnički račun i prijavu.
 
-The idea is to provide a fast, low-latency API that can be integrated into form validation or any other use case.
+Ideja je pružiti brzi servis sa niskom latencijom u svrhu pružanja informacija za provjeru korisničkih formi ili neke druge namjene.
+
+Lista se osvježava jednom dnevno, a podaci se uzimaju sa [službenih stranica Hrvatske pošte](https://www.posta.hr/pretrazivanje-postanskih-ureda).
+
+Dokumentacija za API dostupna je na https://posta.apprepo.eu.

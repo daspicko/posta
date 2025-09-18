@@ -1,31 +1,31 @@
 swagger: "2.0"
 info:
-  title: Post Offices in Croatia API
-  description: An API to retrieve information about post offices in Croatia. List is refreshed every 24 hours. No authentication required. No limitations on usage.
+  title: API za poštanske urede i paketomate Hrvatske pošte
+  description: API omogućuje pristup informacijama o poštanskim uredima i paketomatima Hrvatske pošte. Kroz definirane RESTful endpointove, korisnici mogu dohvatiti popis svih poštanskih brojeva ureda, detalje o pojedinom uredu prema poštanskom broju, popis svih paketomata te informacije o pojedinom paketomatu. API je dizajniran za jednostavnu integraciju u aplikacije koje zahtijevaju podatke o lokacijama, kontaktima, radnom vremenu i uslugama poštanskih ureda i paketomata. Svaki poštanski ured sadrži detaljne podatke poput naziva, adrese, grada, županije, kontakt informacija, tipa ureda, napomena, dostupnih usluga, radnog vremena po danima te geografskih koordinata. Paketomati su opisani poštanskim brojem, nazivom, adresom i županijom. API podržava dohvat podataka u JSON formatu, što olakšava korištenje u web i mobilnim aplikacijama. Namijenjen je razvojnim timovima, poslovnim korisnicima i građanima koji žele brzo i pouzdano pronaći informacije o najbližem poštanskom uredu ili paketomatu, provjeriti radno vrijeme, dostupne usluge ili kontaktirati određenu lokaciju. API je siguran, dostupan putem HTTPS protokola i ne zahtjeva autentikaciju.
   version: "1.0.0"
-host: post-offices-cro.apprepo.eu
+host: posta.apprepo.eu
 basePath: /api/v1
 schemes:
   - https
 
 paths:
-  /post-offices.json:
+  /uredi.json:
     get:
-      summary: Retrieve a list of post offices
-      description: Get a list of all post offices in Croatia.
+      summary: Popis poštanskih brojeva svih ureda u Hrvatskoj
+      description: Dohvaća popis svih poštanskih brojeva u Hrvatskoj.
       produces:
         - application/json
       responses:
         200:
-          description: A list of post offices
+          description: Popis poštanskih brojeva
           schema:
             type: array
             items:
               type: string
-  /post-office/{id}.json:
+  /ured/{id}.json:
     get:
-      summary: Retrieve a specific post office by ID
-      description: Get detailed information about a specific post office using its ID.
+      summary: Poštanski ured prema poštanskom broju
+      description: Dohvaća detaljne informacije o određenom poštanskom uredu koristeći njegov poštanski broj.
       produces:
         - application/json
       parameters:
@@ -36,32 +36,32 @@ paths:
           minimum: 10000
           maximum: 99999
           format: int64
-          description: The ID of the post office to retrieve.
+          description: Poštanski broj ureda koji se dohvaća.
       responses:
         200:
-          description: A single post office
+          description: Poštanski ured
           schema:
             $ref: '#/definitions/PostOffice'
         404:
-          description: Post office not found
+          description: Ured nije pronađen
 
-  /package-boxes.json:
+  /paketomati.json:
     get:
-      summary: Retrieve a list of package boxes
-      description: Get a list of all package boxes in Croatia.
+      summary: Popis paketomata u Hrvatskoj
+      description: Dohvaća popis svih paketomata u Hrvatskoj.
       produces:
         - application/json
       responses:
         200:
-          description: A list of package boxes
+          description: Popis paketomata
           schema:
             type: array
             items:
               type: string
-  /package-box/{id}.json:
+  /paketomat/{id}.json:
     get:
-      summary: Retrieve a specific package box by ID
-      description: Get detailed information about a specific package box using its ID.
+      summary: Dohvaća određeni paketomat prema poštanskom broju
+      description: Dohvaća detaljne informacije o određenom paketomatu koristeći njegov poštanski broj.
       produces:
         - application/json
       parameters:
@@ -72,14 +72,14 @@ paths:
           minimum: 10000
           maximum: 99999
           format: int64
-          description: The ID of the package box to retrieve.
+          description: Poštanski broj paketomata koji se dohvaća.
       responses:
         200:
-          description: A single package box
+          description: Paketomat
           schema:
             $ref: '#/definitions/PackageBox'
         404:
-          description: Package box not found
+          description: Paketomat nije pronađen
 
 definitions:
   PostOffice:
@@ -87,89 +87,89 @@ definitions:
     properties:
       postOffice:
         type: string
-        description: The name of the post office.
+        description: Naziv poštanskog ureda.
       postalCode:
         type: integer
         format: int64
-        description: The unique identifier for the post office.
+        description: Poštanski broj ureda.
       logo:
         type: string
-        description: URL to the logo image of the post office.
+        description: Poveznica na logo poštanskog ureda.
       url:
         type: string
-        description: URL to the post office's webpage.
+        description: Poveznica poštanskog ureda.
       address:
         type: object
-        description: The address of the post office.
+        description: Adresa poštanskog ureda.
         properties:
           street:
             type: string
-            description: The street name and number.
+            description: Ime ulice i broj.
           town:
             type: string
-            description: The town where the post office is located.
+            description: Mjesto gdje se nalazi poštanski ured.
           city:
             type: string
-            description: The city where the post office is located.
+            description: Grad gdje se nalazi poštanski ured.
           county:
             type: string
-            description: The county where the post office is located.
+            description: Županija gdje se nalazi poštanski ured.
       contact:
         type: object
-        description: The contact information for the post office.
+        description: Kontakt informacije za poštanski ured.
         properties:
           email:
             type: string
-            description: The email address of the post office.
+            description: E-mail adresa poštanskog ureda.
           fax:
             type: string
-            description: The fax number of the post office.
+            description: Fax broj poštanskog ureda.
       type:
         type: string
-        description: The type of the post office (e.g., branch, agency).
+        description: Tip poštanskog ureda (npr. poslovnica, agencija).
       notes:
         type: string
-        description: Additional notes about the post office.
+        description: Dodatne napomene o poštanskom uredu.
       services:
         type: string
-        description: The services offered by the post office.
+        description: Usluge koje nudi poštanski ured.
       workingTime:
         type: object
-        description: The working hours of the post office.
+        description: Radno vrijeme poštanskog ureda.
         properties:
           monday:
             type: string
-            description: Working hours on Monday.
+            description: Radno vrijeme ponedjeljkom.
           tuesday:
             type: string
-            description: Working hours on Tuesday.
+            description: Radno vrijeme utorkom.
           wednesday:
             type: string
-            description: Working hours on Wednesday.
+            description: Radno vrijeme srijedom.
           thursday:
             type: string
-            description: Working hours on Thursday.
+            description: Radno vrijeme četvrtkom.
           friday:
             type: string
-            description: Working hours on Friday.
+            description: Radno vrijeme petkom.
           saturday:
             type: string
-            description: Working hours on Saturday.
+            description: Radno vrijeme subotom.
           sunday:
             type: string
-            description: Working hours on Sunday.
+            description: Radno vrijeme nedjeljom.
       coordinates:
         type: object
-        description: The geographical coordinates of the post office.
+        description: Geografske koordinate poštanskog ureda.
         properties:
           latitude:
             type: number
             format: float
-            description: The latitude of the post office.
+            description: Geografska širina poštanskog ureda.
           longitude:
             type: number
             format: float
-            description: The longitude of the post office.
+            description: Geografska dužina poštanskog ureda.
     required:
       - id
       - name
@@ -183,20 +183,20 @@ definitions:
       number:
         type: integer
         format: int64
-        description: The unique identifier for the package box.
+        description: Poštanski broj paketomata.
       name:
         type: string
-        description: The name of the package box.
+        description: Naziv paketomata.
       address:
         type: object
-        description: The address of the package box.
+        description: Adresa paketomata.
         properties:
           street:
             type: string
-            description: The street name and number.
+            description: Ime ulice i broj.
           town:
             type: string
-            description: The town where the package box is located.
+            description: Mjesto gdje se nalazi paketomat.
           county:
             type: string
-            description: The county where the package box is located.
+            description: Županija gdje se nalazi paketomat.
