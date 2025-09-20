@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   title: API za poštanske urede i paketomate Hrvatske pošte
-  description: API omogućuje pristup informacijama o poštanskim uredima i paketomatima Hrvatske pošte. Kroz definirane RESTful endpointove, korisnici mogu dohvatiti popis svih poštanskih brojeva ureda, detalje o pojedinom uredu prema poštanskom broju, popis svih paketomata te informacije o pojedinom paketomatu. API je dizajniran za jednostavnu integraciju u aplikacije koje zahtijevaju podatke o lokacijama, kontaktima, radnom vremenu i uslugama poštanskih ureda i paketomata. Svaki poštanski ured sadrži detaljne podatke poput naziva, adrese, grada, županije, kontakt informacija, tipa ureda, napomena, dostupnih usluga, radnog vremena po danima te geografskih koordinata. Paketomati su opisani poštanskim brojem, nazivom, adresom i županijom. API podržava dohvat podataka u JSON formatu, što olakšava korištenje u web i mobilnim aplikacijama. Namijenjen je razvojnim timovima, poslovnim korisnicima i građanima koji žele brzo i pouzdano pronaći informacije o najbližem poštanskom uredu ili paketomatu, provjeriti radno vrijeme, dostupne usluge ili kontaktirati određenu lokaciju. API je siguran, dostupan putem HTTPS protokola i ne zahtjeva autentikaciju.
+  description: API omogućuje pristup informacijama o poštanskim uredima i paketomatima Hrvatske pošte. Korisnici mogu dohvatiti popis svih poštanskih brojeva ureda, detalje o pojedinom uredu prema poštanskom broju, popis svih paketomata te informacije o pojedinom paketomatu.
   version: "1.0.0"
 host: posta.apprepo.eu
 basePath: /api/v1
