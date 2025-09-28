@@ -100,18 +100,11 @@ console.log('Saving results to files...');
 if (!fs.existsSync('dist')) {
     fs.mkdirSync('dist');
 }
-if (!fs.existsSync('dist/api')) {
-    fs.mkdirSync('dist/api');
+
+if (fs.existsSync('dist/api')) {
+    fs.removedirSync('dist/api', { recursive: true });
 }
-if (!fs.existsSync('dist/api/v1')) {
-    fs.mkdirSync('dist/api/v1');
-}
-if (!fs.existsSync('dist/api/v1/ured')) {
-    fs.mkdirSync('dist/api/v1/ured');
-}
-if (!fs.existsSync('dist/api/v1/paketomat')) {
-    fs.mkdirSync('dist/api/v1/paketomat');
-}
+fs.copyFileSync('api', 'dist/api', { recursive: true }); // Ensure structure and redirects
 
 fs.writeFileSync('dist/api/v1/uredi.json', JSON.stringify(postOffices.map(office => office.postalCode)));
 for(const office of postOffices) {
