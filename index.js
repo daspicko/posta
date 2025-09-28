@@ -96,16 +96,6 @@ while (packageBoxesDetailUrls.length > 0) {
 console.log('Package box details extracted.', packageBoxes.length);
 
 // Save to files
-console.log('Saving results to files...');
-if (!fs.existsSync('dist')) {
-    fs.mkdirSync('dist');
-}
-
-if (fs.existsSync('dist/api')) {
-    fs.removedirSync('dist/api', { recursive: true });
-}
-fs.copyFileSync('api', 'dist/api', { recursive: true }); // Ensure structure and redirects
-
 fs.writeFileSync('dist/api/v1/uredi.json', JSON.stringify(postOffices.map(office => office.postalCode)));
 for(const office of postOffices) {
     fs.writeFileSync(`dist/api/v1/ured/${office.postalCode}.json`, JSON.stringify(office));

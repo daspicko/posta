@@ -13,5 +13,6 @@ cp 404.html dist/
 cp -r js dist/
 cp -r css dist/
 cp -r assets dist/
+cp -r api dist/ # Ensure structure and redirects
 
 node index.js
