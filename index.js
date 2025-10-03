@@ -100,11 +100,23 @@ fs.writeFileSync('dist/api/v1/uredi.json', JSON.stringify(postOffices.map(office
 for(const office of postOffices) {
     fs.writeFileSync(`dist/api/v1/ured/${office.postalCode}.json`, JSON.stringify(office));
 }
+fs.writeFileSync('dist/api/v1/uredi-autocomplete.json', JSON.stringify(postOffices.map(office => {
+    return {
+        value: office.postalCode,
+        text: office.postOffice.substring(office.postalCode.toString().length).trim()
+    }
+})));
 
 fs.writeFileSync('dist/api/v1/paketomati.json', JSON.stringify(packageBoxes.map(box => box.number)));
 for(const box of packageBoxes) {
     fs.writeFileSync(`dist/api/v1/paketomat/${box.number}.json`, JSON.stringify(box));
 }
-console.log('Data extraction and saving completed successfully.');
+fs.writeFileSync('dist/api/v1/paketomati-autocomplete.json', JSON.stringify(packageBoxes.map(box => {
+    return {
+        value: box.number,
+        text: box.name
+    }
+})));
 
+console.log('Data extraction and saving completed successfully.');
 console.log(`Total time: ${(Date.now() - start) / 1000} seconds.`);
